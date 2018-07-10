@@ -1,5 +1,5 @@
 var conf = require('./config.json')
-var abi = require('/Users/liren/code/blockchain/crowd-funder-sc/build/contracts/CrowdFunder.json')
+var abi = require('../18-crowd-funder-contract/build/contracts/CrowdFunder.json')
 var Web3 = require ('web3')
 var contract = require('truffle-contract')
 var BigNumber = require('bignumber.js')

@@ -1,5 +1,5 @@
 const conf = require('./config.json')
-const abi = require('/Users/liren/code/blockchain/crowd-funder-sc/build/contracts/CrowdFunder.json')
+const abi = require('../18-crowd-funder-contract/build/contracts/CrowdFunder.json')
 const Web3 = require ('web3')
 const contract = require('truffle-contract')
 const BigNumber = require('bignumber.js')
