@@ -25,7 +25,7 @@ contract Example {
 
     // A hexadecimal value stored in a constant with 'constant', compiler replaces each occurrence with actual value
     uint constant VERSION_ID = 0x123A1;
-	
+
 	// private variable, can only be accessed by functions inside this contract
 	uint private secret;
 
@@ -35,7 +35,7 @@ contract Example {
     uint248 e;
 
     // Type casting
-    int f = int(b);
+    int f = int(b); //cast int256 to uint8
 
     // boolean variable
     // or can also be declared by 'var b = true;' for inferred typing
@@ -51,7 +51,7 @@ contract Example {
 	//
 	// ARRAYS
 	// ======
-	
+
 	// Below is a static array whose length is 5 fixed
 	int[5] topFiveScores;
 
@@ -81,11 +81,11 @@ contract Example {
 	// ___________________________________________________________________________
 	//
 	// MAPPINGS
-	// ========	
+	// ========
 
     // mapping(_KeyType => _ValueType)
     mapping (bytes32 => uint) public balances;
-	
+
 	// Mapping keys can be any type EXCEPT for
 	// - a mapping,
 	// - a dynamically sized array,
@@ -119,18 +119,18 @@ contract Example {
 	// ___________________________________________________________________________
 	//
 	// Type inferrence
-	
+
 	function test() public pure {
 		// If initialising a variable in a declaration types can be deduced (like Go and C#)
 		var aaa = true; // boolean
 		var bbb = 10; // uint8
 		var ccc = 1000; // uint16
 		var ddd = 90000; // uint24
-		
+
 		bbb = 999; // GENERATES ERROR because 999 cannot fit inside 8 bits
-		
+
 		// DON'T use "var" with integer literals
-		
+
 		var n = name;
-	}	
+	}
 }

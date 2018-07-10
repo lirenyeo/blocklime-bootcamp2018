@@ -26,6 +26,7 @@ contract ContractName {
     */
 
     // State Variables
+    // These variables get stored on blockchain
     address public stateVariable1;
     uint public stateVariable2;
     uint private stateVariable3;
@@ -36,12 +37,12 @@ contract ContractName {
     event LogEvent2(address param1);
     event LogEvent3();
 
-    // Function Modifiers
+    // Function Modifiers (Write your own 'public', 'private', etc)
     modifier onlyIfOwnerModifier() {
         if (msg.sender != owner) {
             throw;
         }
-        _;
+        _; //ends with this to indicate it is a modifier
     }
 
     modifier onlyIfMortalModifier() {
@@ -85,6 +86,7 @@ contract ContractName {
     }
 
     //default function
+    //gets called if a function is called but no such function name can be found
     function() {
         throw;
     }
