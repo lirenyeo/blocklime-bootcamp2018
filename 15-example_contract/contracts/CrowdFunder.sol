@@ -65,7 +65,7 @@ contract CrowdFunder {
         _;
     }
 
-    function CrowdFunder (
+    constructor (
         uint timeInHoursForFundraising,
         string _campaignUrl,
         address _fundRecipient,
@@ -77,7 +77,7 @@ contract CrowdFunder {
         minimumToRaise = _minimumToRaise * 1000000000000000000; //convert to wei
         raiseBy = now + (timeInHoursForFundraising * 1 hours);
         currentBalance = 0;
-        LogFunderInitialized(
+        emit LogFunderInitialized(
             creator,
             fundRecipient,
             campaignUrl,
@@ -94,7 +94,7 @@ contract CrowdFunder {
             );
         totalRaised += msg.value;
         currentBalance = totalRaised;
-        LogFundingReceived(msg.sender, msg.value, totalRaised);
+        emit LogFundingReceived(msg.sender, msg.value, totalRaised);
 
         checkIfFundingCompleteOrExpired();
         return contributions.length - 1; // return id
@@ -103,7 +103,7 @@ contract CrowdFunder {
     function checkIfFundingCompleteOrExpired() public {
         if (totalRaised > minimumToRaise) {
             state = State.Successful;
-            LogFundingSuccessful(totalRaised);
+            emit LogFundingSuccessful(totalRaised);
             payOut();
 
             // could incentivize sender who initiated state change here
@@ -119,7 +119,7 @@ contract CrowdFunder {
         }
         state = State.Closed;
         currentBalance = 0;
-        LogWinnerPaid(fundRecipient);
+        emit LogWinnerPaid(fundRecipient);
     }
 
     function getRefund(uint256 id) public inState(State.ExpiredRefund)
